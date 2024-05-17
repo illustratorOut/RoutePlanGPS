@@ -1,0 +1,9 @@
+Django==4.2.13
+python-dotenv==1.0.1
+psycopg2==2.9.9
+pillow==10.3.0
+colorama==0.4.6
+
+
+
+requests==2.31.0

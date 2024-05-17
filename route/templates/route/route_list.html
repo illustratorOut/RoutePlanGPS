@@ -1,0 +1,82 @@
+{% extends 'route/base.html' %}}
+{% load static%}
+
+{% block content%}
+
+
+<div class="container py-3">
+
+
+
+
+
+    <p>
+        <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false"
+           aria-controls="collapseExample">
+            Маршруты пользователя
+        </a>
+    </p>
+
+
+    <div class="collapse" id="collapseExample">
+        <div class="row card card-body">
+
+            <H1>Все маршруты пользователя</H1>
+            <div class="row row-cols-1 row-cols-md-4 mb-3 text-center">
+                <table class="table table-bordered ">
+
+
+                    <thead class="m-0 p-0">
+                    <tr class="text-center" style="background-color:#7ab3ef">
+                        <th scope="col">Место</th>
+                        <th scope="col">Время</th>
+                        <th scope="col">Действие</th>
+                        <th scope="col">Вознаграждение</th>
+                        <th scope="col">Связанная привычка</th>
+                        <th scope="col">Признак публичности</th>
+                        <th scope="col"></th>
+                    </tr>
+                    </thead>
+
+
+                    {% for object in object_list %}
+                    {% if object.user == user %}
+                    <tr class="text-center">
+                        <td class="text-center">{{object.place}}</td>
+                        <td>{{object.time}}</td>
+                        <td>{{object.action}}</td>
+                        <td>{{object.reward|default_if_none:"-"}}</td>
+                        <td>{{object.related_habit|default_if_none:"-"}}</td>
+                        <td>{{object.is_public}}</td>
+                        <td>
+                            <div class="container">
+
+                                <div class="row">
+                                    <div class="col m-0 p-0">
+                                        <a href="{% url 'route:view' object.pk  %}"
+                                           class="btn btn-outline-primary btn-sm">Просмотр</a>
+                                        {% if object.user == request.user %}
+                                        <a href="{% url 'route:update' object.pk  %}"
+                                           class="btn btn-outline-secondary btn-sm">Изменить</a>
+                                        <a href="{% url 'route:delete' object.pk  %}"
+                                           class="btn btn-outline-danger btn-sm">Удалить</a>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endif %}
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+    <br>
+</div>
+
+
+{% endblock %}
+

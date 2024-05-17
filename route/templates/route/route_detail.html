@@ -1,0 +1,54 @@
+{% extends 'route/base.html' %}}
+
+
+{% block content%}
+
+
+<div class="col-6 mx-auto">
+    <div class="row">
+        <div class="card">
+
+            <div class="card-header text-center">
+                <h5 class="card-title">{{object.user}}</h5>
+            </div>
+
+            <div class="row align-items-start">
+                <div class="col">
+                    <div class="card mb-3 mt-3 rounded  d-block" style="max-width: 500px;">
+                        <img src="/static/users/habits.jpg" class="img-fluid"/>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="card mb-3 mt-3 rounded">
+                        <h5 class="card-title text-center">Описание</h5>
+                    </div>
+
+                    <div class="alert alert-success " role="alert">
+                        <p class="mb-0"><b>Место: </b>{{ object.place }}</p>
+                        <p class="mb-0"><b>Время: </b>{{ object.time }}</p>
+                        <p class="mb-0"><b>Действие: </b>{{ object.action }}</p>
+                        <p class="mb-0"><b>Признак приятной привычки: </b>{{ object.is_pleasant }}</p>
+                        <p class="mb-0"><b>Связанная привычка: </b>{{ object.related_habit }}</p>
+                        <p class="mb-0"><b>Периодичность: </b>{{ object.periodic }}</p>
+                        <p class="mb-0"><b>Вознаграждение: </b>{{ object.reward }}</p>
+                        <p class="mb-0"><b>Время на выполнение: </b>{{ object.execute_time }} сукунд</p>
+                        <p class="mb-0"><b>Признак публичности: </b>{{ object.is_public }}</p>
+                        <hr>
+                        <b>Просмотры: {{ object.count_views }}</b>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="card-footer text-muted text-center">
+                <p class="card-text"><small class="text-muted">Дата последнего обновления
+                    {{object.last_update}}</small></p>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

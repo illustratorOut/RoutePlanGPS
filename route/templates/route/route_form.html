@@ -1,0 +1,100 @@
+{% extends 'route/base.html' %}
+
+
+{% block content%}
+
+
+<div class="container py-3">
+
+
+    <form method="post" enctype="multipart/form-data">
+        <div class="row justify-content-center">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title text-center">
+                            {% if object.start_points_x%}
+                            Изменение маршрута / габаритов
+                            {% else %}
+                            Габариты транспорта
+                            {% endif %}
+                        </h2>
+                    </div>
+                    <div class="card-body">
+                        {% csrf_token %}
+
+                        <div class="row justify-content-center">
+                            <div class="col-2 mb-2 ">
+                                <H3>Точка 'А'</H3>
+                            </div>
+                            <div class="col-4 mb-2">
+                                {{ form.start_points_x }}
+                            </div>
+                            <div class="col-4 mb-2 ">
+                                {{ form.start_points_y }}
+                            </div>
+                        </div>
+
+
+                        <div class="row justify-content-center mb-5">
+                            <div class="col-2 mb-2 ">
+                                <H3>Точка 'Б'</H3>
+                            </div>
+
+                            <div class="col-4 mb-2 ">
+                                {{ form.end_points_x }}
+                            </div>
+                            <div class="col-4 mb-2 ">
+                                {{ form.end_points_y }}
+                            </div>
+                        </div>
+                        <hr align="left" size="4" color="#ff9900"/>
+
+
+                        <div class="row justify-content-center">
+                            <div class="col-2">
+                                {{ form.width}}
+                            </div>
+                            <div class="col-5 mb-2">
+                                {{ form.length}}
+                            </div>
+                            <div class="col-3"
+                                 style="transform: rotate(90deg); height:50%; width:15%;">
+                                {{ form.height }}
+                            </div>
+
+                            <img src="/static/route/truck.jpg"/>
+
+                            <div class="row mt-3">
+                                <div class="col">
+                                    {{ form.mass }}
+                                </div>
+                                <div class="col">
+                                    {{ form.max_perm_mass }}
+                                </div>
+                                <div class="col">
+                                    {{ form.axle_load }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-footer text-center">
+                        {% if object.start_points_x%}
+                        <button type="submit" class="col-6  btn btn-success">
+                            <h3>Сохранить изменения</h3>
+                        </button>
+                        {% else %}
+                        <button type="submit" class="col-6  btn btn-success">
+                            <h3>Построить маршрут</h3>
+                            {% endif %}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+{% endblock %}
