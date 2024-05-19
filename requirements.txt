@@ -5,5 +5,5 @@ pillow==10.3.0
 colorama==0.4.6
 
 
-
+folium==0.16.0
 requests==2.31.0
