@@ -1,4 +1,6 @@
 from django.contrib.auth.models import AbstractUser
+
+from users.managers import CustomUserManager
 from django.db import models
 
 from route.models import NULLABLE
@@ -12,6 +14,8 @@ class User(AbstractUser):
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
+
+    objects = CustomUserManager()
 
     class Meta:
         verbose_name = 'Пользователь'

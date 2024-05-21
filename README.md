@@ -1,7 +1,8 @@
-| Описание                 | Команды                        |
-|--------------------------|--------------------------------|
-| ✔️ Приминить миграции    | ```python manage.py migrate``` |
-| ✔️ Создать пользователей | ```python manage.py ccsu```    |
+| Описание                 | Команды                                                    |
+|--------------------------|------------------------------------------------------------|
+| ✔️ Приминить миграции    | ```python manage.py migrate```                             |
+| ✔️ Создать пользователей | ```python manage.py ccsu```                                |
+| ✔️ Запустить HTTPS       | ```python manage.py runserver_plus --cert-file cert.crt``` |
 
 <br>
 
@@ -18,6 +19,9 @@ POSTGRES_PASSWORD=
 POSTGRES_USER=postgres
 POSTGRES_HOST=localhost
 POSTGRES_PORT=5432
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY=
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET=
 
 API_KEY_2GIS=
 

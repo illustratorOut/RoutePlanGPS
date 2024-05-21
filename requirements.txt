@@ -7,3 +7,7 @@ colorama==0.4.6
 
 folium==0.16.0
 requests==2.31.0
+social-auth-app-django==5.4.1
+django-extensions==3.2.3
+Werkzeug==3.0.3
+pyOpenSSL==24.1.0
