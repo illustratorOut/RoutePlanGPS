@@ -10,15 +10,15 @@
     <div class="p-2 flex-fill bd-highlight"></div>
     <div class="p-2 flex-fill bd-highlight"><h1>Навигация</h1></div>
 
+
     <div class="ms-auto p-2 bd-highlight">
         <div class="px-5">
             <div class="px-5 mx-5">
 
 
-                <div class="container ms-auto p-2 bd-highlight">
+                <div class="container ms-auto pt-2 bd-highlight">
                     <div class="row">
                         <div class="col m-0 p-0">
-
 
                             <ul class="navbar-nav">
                                 <li class="nav-item dropdown">
@@ -43,15 +43,23 @@
                                     {% else %}
                                     <a class="p-2 btn btn-outline-primary" href="{% url 'users:login'%}">Войти</a>
                                     <a class="p-2 btn btn-outline-primary" href="{% url 'users:registration'%}">Регистрация</a>
-
                                     {% endif %}
+
                                 </li>
+
                             </ul>
                         </div>
+                        {% if user.is_authenticated %}
+                        <div class="col m-0 p-0">
+                            <div class="ms-auto pt-3 px-3 bd-highlight">
+                                <h6>
+                                    {{ user.email }}
+                                </h6>
+                            </div>
+                        </div>
+                        {% endif %}
                     </div>
-                    <div class="col m-0 p-0">
-                        <div class="ms-auto p-2 bd-highlight">{{ user.email }}</div>
-                    </div>
+
                 </div>
             </div>
         </div>

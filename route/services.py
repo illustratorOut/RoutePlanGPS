@@ -1,73 +1,117 @@
-from json import dumps
-import folium
+import os
+import aiofiles
+import asyncpg
 import requests
+import csv
 
-url = 'https://routing.api.2gis.com/truck/6.0.0/global?key=rurbbn3446&r=3270310259'
+from json import dumps
+from aiocsv import AsyncDictReader
+from dotenv import load_dotenv
 
-data = {
-    "locale": "ru",
-    "point_a_name": "Source",
-    "point_b_name": "Target",
-    "points": [{"type": "pedo", "x": 83.77921499999999, "y": 53.34895, "object_id": "3378322490785844"},
-               {"type": "pedo", "x": 48.29643, "y": 42.063977, "object_id": "563572723679253"}],
-    "purpose": "autoSearch",
-    "type": "truck_jam",
-    "alternative": 0,
-    "viewport": {"topLeft": {"x": 83.77921499999999, "y": 53.34895},
-                 "bottomRight": {"x": 48.29643, "y": 42.063977}, "zoom": 5.23436876515864},
-    "truck_params": {"length": 3.8, "height": 4, "width": 2.1, "mass": 44, "max_perm_mass": 3.5, "axle_load": 9}
-}
+load_dotenv()
 
-response = requests.post(url=url, data=dumps(data))
 
-res = response.json()
+class RouteMap:
+    url_route_id = 'https://webmapapi.navitel.ru/api/v1/routeId'
+    url_route_metadata = 'https://webmapapi.navitel.ru/api/v1/routeMetadata'
+    url_route_points = 'https://webmapapi.navitel.ru/api/v1/routeGeometry'
+    url_weather = "http://api.weatherapi.com/v1/current.json?q=bulk"
 
-# Получаем координаты отправки и назначения
-x_start = res['query']['points'][0]['x']
-y_start = res['query']['points'][0]['y']
+    headers = {
+        'accept': 'application/json',
+        'Api-Key': os.getenv('API_KEY_NAVITEL'),
+        'Content-Type': 'application/json'
+    }
 
-x_end = res['query']['points'][1]['x']
-y_end = res['query']['points'][1]['y']
+    def __init__(self):
+        pass
 
-value = res['result'][0]['ui_total_distance']['value']
-unit = res['result'][0]['ui_total_distance']['unit']
-ui_total_duration = res['result'][0]['ui_total_duration']
-zoom_start = res['query']['viewport']['zoom']
+    def get_route_id(self, data: dict) -> str:
+        '''Уникальный идентификатор маршрута'''
+        response = requests.post(url=self.url_route_id, data=dumps(data), headers=self.headers)
+        result = response.json()
+        return result.get('route_id')
 
-map_title = f'{value} {unit} Время: {ui_total_duration}'
-title_html = f'<h1 style="position:absolute;z-index:100000;left:40vw" >{map_title}</h1>'
+    def get_route_metadata(self, route_id: str) -> dict:
+        '''Метаданные маршрута'''
+        response = requests.post(url=self.url_route_metadata, data=dumps({"route_id": route_id}), headers=self.headers)
+        result = response.json()
+        return result
 
-m = folium.Map(location=[y_start, x_start],
-               zoom_start=zoom_start, )
+    def get_route_points(self, route_id: str) -> list:
+        '''Геометрия маршрута'''
+        response = requests.post(url=self.url_route_points, data=dumps({"route_id": route_id}), headers=self.headers)
+        result = response.json().get('lines')
+        return result
 
-figure = folium.FeatureGroup(name="Все метки")
-m.add_child(figure)
-loc = []
+    def get_weather(self, line: list) -> list:
+        '''Получить прогноз погоды'''
+        headers = {
+            'key': os.getenv('API_KEY_WEATHER'),
+            'Content-Type': 'application/json'
+        }
 
-for row in res['result'][0]['maneuvers']:
+        data = {"locations": [*line]}
+        response = requests.post(url=self.url_weather, data=dumps(data), headers=headers)
+        result = response.json()
 
-    if row.get('outcoming_path') is not None:
-        res = row.get('outcoming_path').get('geometry')[0].get('selection')
-        str_res = str(res).replace('LINESTRING(', '').replace(')', '')
+        res = []
+        try:
+            for row in result['bulk']:
+                temp_c = row['query']['current']['temp_c']
+                city = row['query']['location']['name']
+                res.append({'city': city, 'temp_c': temp_c})
+        except Exception as e:
+            pass
+        return res
 
-        for i in str_res.split(','):
-            x, y = i.strip().split(' ')
-            loc.append((float(y), float(x)))
 
-m.get_root().html.add_child(folium.Element(title_html))
+def clear_str(row: str) -> str:
+    '''Очищает строку row от заданных символов'''
+    symbols = [' руб.', ' белор.', ',']
+    row_clear = str(row).strip().lower()
+    for symbol in symbols:
+        if symbol in row_clear:
+            if symbol == ',':
+                row_clear = row_clear.replace(symbol, '.')
+            else:
+                row_clear = row_clear.replace(symbol, '')
+    return row_clear
 
-folium.Marker(location=[y_start, x_start],
-              popup=str('А'),
-              icon=folium.Icon(color='black')
-              ).add_to(m)
 
-folium.Marker(location=[y_end, x_end],
-              popup=str('Б'),
-              icon=folium.Icon(color='black')
-              ).add_to(m)
+async def load_csv(name: str):
+    '''Асинхронная загрузка данных (о заправках) в БД из файла CSV'''
+    async with aiofiles.open(name) as r_file:
+        dict_ = AsyncDictReader(r_file, delimiter=";", quoting=csv.QUOTE_ALL)
 
-folium.PolyLine(loc,
-                color='red',
-                weight=5,
-                opacity=0.8).add_to(m)
-m.save("map1.html")
+        queries = []
+        async for row in dict_:
+            if row['ДТ'] != '':
+                queries.append(
+                    (
+                        row['Регион'],
+                        float(clear_str(row['Координаты GPS (широта)'])),
+                        float(clear_str(row['Координаты GPS (долгота)'])),
+                        float(clear_str(row['ДТ']))
+                    ))
+            else:
+                queries.append(
+                    (
+                        row['Регион'],
+                        float(clear_str(row['Координаты GPS (широта)'])),
+                        float(clear_str(row['Координаты GPS (долгота)'])),
+                        0
+                    ))
+
+        async with asyncpg.create_pool(
+                user=os.getenv('POSTGRES_USER'),
+                password=os.getenv('POSTGRES_PASSWORD'),
+                database=os.getenv('POSTGRES_DB'),
+                host=os.getenv('POSTGRES_HOST'),
+        ) as pool:
+            async with pool.acquire() as connection:
+                await connection.executemany(
+                    'INSERT INTO "route_gasstation" (region, longitude, latitude, price_dt) VALUES ($1,$2 ,$3, $4)',
+                    queries)
+
+# asyncio.run(load_csv(r'C:\Users\Alex\PycharmProjects\RoutePlanGPS\spisokAZS.csv'))

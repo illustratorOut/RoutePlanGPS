@@ -22,11 +22,16 @@ class Route(models.Model):
 
     class Meta:
         verbose_name = 'Маршрут'
-        verbose_name_plural = 'Маршруту'
+        verbose_name_plural = 'Маршруты'
 
 
 class GasStation(models.Model):
     region = models.TextField(verbose_name='Регион')
+    longitude = models.FloatField(verbose_name='Долгота')
+    latitude = models.FloatField(verbose_name='Широта')
+    price_dt = models.FloatField(verbose_name='Стоимость ДТ', **NULLABLE)
+    height_above_level = models.CharField(max_length=120, verbose_name='Высота над уровнем моря', **NULLABLE)
+    temperature = models.CharField(max_length=120, verbose_name='Температура', **NULLABLE)
 
     class Meta:
         verbose_name = 'Заправка'

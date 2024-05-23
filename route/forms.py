@@ -29,28 +29,28 @@ class RouteForm(StyleFormMixin, forms.ModelForm):
             'start_points_x': forms.NumberInput(
                 attrs={
                     'min': 0,
-                    'placeholder': 'Координаты X',
+                    'placeholder': 'Координаты X: Долгота',
                     'step': '0.000001',
                 }),
 
             'start_points_y': forms.NumberInput(
                 attrs={
                     'min': 0,
-                    'placeholder': 'Координаты Y',
+                    'placeholder': 'Координаты Y: Широта',
                     'step': '0.000001',
                 }),
 
             'end_points_x': forms.NumberInput(
                 attrs={
                     'min': 0,
-                    'placeholder': 'Координаты X',
+                    'placeholder': 'Координаты X: Долгота',
                     'step': '0.000001',
                 }),
 
             'end_points_y': forms.NumberInput(
                 attrs={
                     'min': 0,
-                    'placeholder': 'Координаты Y',
+                    'placeholder': 'Координаты Y: Широта',
                     'step': '0.000001',
                 }),
 
