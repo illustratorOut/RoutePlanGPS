@@ -59,9 +59,21 @@ class Command(BaseCommand):
                         'axle_load': 9
                     },
                 }
+
                 for row in dict_route:
-                    route = Route.objects.create(**dict_route[row])
-                    route.save()
-                print(f'Для пользователя: {Fore.GREEN}{user}{Fore.RESET} создано {len(dict_route)} маршрута!')
+                    if Route.objects.filter(
+                            user=dict_route[row]['user'],
+                            start_title=dict_route[row]['start_title'],
+                            end_title=dict_route[row]['end_title'],
+                            start_points_x=dict_route[row]['start_points_x'],
+                            start_points_y=dict_route[row]['start_points_y'],
+                            end_points_x=dict_route[row]['end_points_x'],
+                            end_points_y=dict_route[row]['end_points_y']):
+                        print(
+                            f'Маршрут  {Fore.RED}{dict_route[row]['start_title']} → {dict_route[row]['end_title']}{Fore.RESET} уже существует!')
+                    else:
+                        route = Route.objects.create(**dict_route[row])
+                        route.save()
+                        print(f'Для пользователя: {Fore.GREEN}{user}{Fore.RESET} создан 1 маршрут!')
         except Exception as e:
             print(f'{Fore.RED}Возникла ошибка при создании маршрутов пользователю\n{Fore.RESET}{e}')

@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+
+  db:
+    image: postgres:15-alpine
+    restart: on-failure
+    env_file:
+      - .env
+    expose:
+      - '5432'
+    volumes:
+      - pg_data:/var/lib/postgresql/data/
+    healthcheck:
+      test: [ 'CMD-SHELL', '-c', 'pg_isready -U $POSTGRES_USER' ]
+      interval: 10s
+      retries: 5
+      timeout: 5s
+
+  app:
+    build: .
+    tty: true
+    ports:
+      - '8000:8000'
+    command: sh -c 'python manage.py migrate && python manage.py ccsu  && python manage.py load_csv && python manage.py route_data && python manage.py runserver_plus --cert-file cert.crt 0.0.0.0:8000'
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - .:/app
+    env_file:
+      - .env
+
+volumes:
+  pg_data:

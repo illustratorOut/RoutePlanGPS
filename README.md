@@ -5,14 +5,16 @@
 ## Содержание
 
 - [Технологии](#технологии)
-- [Начало работы](#Разработка)
-- [Примеры использования](#Использование)
+- [Быстрый старт](#docker)
+- [Начало работы](#разработка)
+- [Примеры использования](#использование)
 
 ## Технологии
 
 - [DJANGO](https://www.djangoproject.com/)
 - [DJANGO REST FRAMEWORK](https://www.django-rest-framework.org/)
 - [DRF-YASG](https://drf-yasg.readthedocs.io/en/stable/readme.html)
+- [DOCKER](https://docs.docker.com/engine/install/)
 - [NAVITEL API](https://навител.рф/ru/apinavitelmaps/api)
 - [WEATHER API](https://www.weatherapi.com/docs/#)
 - [PSYCOPG2](https://www.psycopg.org/)
@@ -26,6 +28,21 @@
 
 Для установки и запуска проекта, необходим [Python](https://www.python.org/downloads/)
 v3.12, [PostgreSQL](https://www.postgresql.org/download/windows/) 15.7
+или [Docker Desktop](https://docs.docker.com/engine/install/)
+<hr>
+
+### DOCKER
+
+Для запуск через docker, необходимо собрать образ web-приложения, с помощью команды:
+
+```commandline
+docker-compose up --build
+```
+
+После успешной сборки образа, перейдите по ссылке: [Стартовая страница](https://mysite.com:8000/)
+
+Готово! Можно использовать web-приложения
+<hr>
 
 ### Установка зависимостей
 
@@ -71,12 +88,6 @@ CELERY_RESULT_BACKEND=redis://redis:6379
 | ✔️ Загрузить в БД заправки | ```python manage.py load_csv```                            |
 | ✔️ Запустить HTTPS         | ```python manage.py runserver_plus --cert-file cert.crt``` |
 
-<br>
-
 ## Использование
-
-> [!TIP]
-> 1. Перед использованием проекта оснакомпесь с вспомогательным контентом
-> 2. Выполните все команды из таблицы ниже или разверните докер контейнер
 
 ## FAQ
