@@ -5,72 +5,21 @@
 
 
 <div class="container py-3">
-
-    <div class="container px-4 py-5" id="hanging-icons">
-        <h2 class="pb-2 border-bottom">Навигация</h2>
-        <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
-
-            <div class="col d-flex align-items-start">
-                <div class="icon-square bg-light text-dark flex-shrink-0 me-3">
-                    <img src="static/route/api.png">
-                </div>
-                <div>
-                    <h2>Документация API</h2>
-                    <p>API работает прямо в браузере, промежуточный ПО не требуется. Если хотите готовое решение для
-                        интеграцией с вашим сайтом, я
-                        написал небольшую RESTful API </p>
-                    <a href="swagger/" class="btn btn-primary">Документация</a>
-                </div>
-            </div>
-            <div class="col d-flex align-items-start">
-                <div class="icon-square bg-light text-dark flex-shrink-0 me-3">
-                    <svg class="bi" width="1em" height="1em">
-                        <use xlink:href="#cpu-fill"></use>
-                    </svg>
-                </div>
-                <div>
-                    <h2>Маршруты</h2>
-                    <p>Абзац текста под заголовком, поясняющий заголовок. Мы добавим к нему еще одно предложение и,
-                        вероятно, просто продолжим, пока у нас не закончатся слова.</p>
-                    <a href="#" class="btn btn-primary">
-                        Основная кнопка
-                    </a>
-                </div>
-            </div>
-            <div class="col d-flex align-items-start">
-                <div class="icon-square bg-light text-dark flex-shrink-0 me-3">
-                    <svg class="bi" width="1em" height="1em">
-                        <use xlink:href="#tools"></use>
-                    </svg>
-                </div>
-                <div>
-                    <h2>Избранный заголовок</h2>
-                    <p>Абзац текста под заголовком, поясняющий заголовок. Мы добавим к нему еще одно предложение и,
-                        вероятно, просто продолжим, пока у нас не закончатся слова.</p>
-                    <a href="#" class="btn btn-primary">
-                        Основная кнопка
-                    </a>
-                </div>
-            </div>
+    <div class="row justify-content-center">
+        <div class="col-4">
+            <a class="btn btn-light col-12 text-center p-1" style="border: 2px solid black; background: #7ab3ef;"
+               data-bs-toggle="collapse"
+               href="#collapseExample"
+               role="button"
+               aria-expanded="false"
+               aria-controls="collapseExample"><h5>Маршруты пользователя</h5></a>
         </div>
     </div>
-
-
-    <p>
-        <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false"
-           aria-controls="collapseExample">
-            Маршруты пользователя
-        </a>
-    </p>
-
-
-    <div class="collapse" id="collapseExample">
+    <div class="collapse pt-2" id="collapseExample">
         <div class="row card card-body">
-
             <H1>Все маршруты пользователя</H1>
             <div class="row row-cols-1 row-cols-md-4 mb-3 text-center">
                 <table class="table table-bordered ">
-
 
                     <thead class="m-0 p-0">
                     <tr class="text-center" style="background-color:#7ab3ef">
@@ -121,6 +70,91 @@
         </div>
     </div>
     <br>
+
+    <div class="container px-4 pb-5" id="hanging-icons">
+        <h2 class="pb-2 border-bottom">Навигация</h2>
+        <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+
+            <div class="col d-flex align-items-start">
+                <div class="icon-square bg-light text-dark flex-shrink-0 me-3">
+                </div>
+                <div>
+                    <h2>Документация API</h2>
+                    <p>API работает прямо в браузере, промежуточный ПО не требуется. Если хотите готовое решение для
+                        интеграцией с вашим сайтом, я
+                        написал небольшую RESTful API </p>
+                    <a href="swagger/" class="btn btn-primary">Документация</a>
+                </div>
+            </div>
+            <div class="col d-flex align-items-start">
+                <div class="icon-square bg-light text-dark flex-shrink-0 me-3">
+
+                </div>
+                <div>
+                    <h2>Маршруты</h2>
+                    <p>Построение маршрута работает на основе точечных координат. Необходимо передать параметры
+                        грузового авто а так же указать координаты долготы и широты</p>
+                    <a href="#create" class="btn btn-primary">Подробнее</a>
+                </div>
+            </div>
+            <div class="col d-flex align-items-start">
+                <div class="icon-square bg-light text-dark flex-shrink-0 me-3">
+
+                </div>
+                <div>
+                    <h2>Поддержка OAuth2</h2>
+                    <p>Это протокол авторизации, предназначенный для организации доступа клиентских приложений к
+                        ресурсам или данным учётных записей пользователя на другом сервисе.</p>
+                    <a href="/users/login/" class="btn btn-primary">Авторизация</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr class="featurette-divider">
+
+    <div class="row featurette py-5">
+        <div class="col-md-7">
+            <h2 class="featurette-heading">Пример маршрута. <span class="text-muted">Владивасток→Дербент.</span></h2>
+            <p class="lead">Отображается общее растоянии ХХ км. Так же присутствует информация о времени в пути,
+                на карте отображается маркеры с заправками, и цена диз топлива.</p>
+        </div>
+        <div class="col-md-5">
+            <img class="zoom" style="width: 500px; height=500px;border: 3px solid #00a8e1;"
+                 src="static/route/home_preview_map.png">
+            <style>
+                .zoom:hover{
+              transform: scale(1.5);
+                }
+            </style>
+        </div>
+    </div>
+    <hr class="featurette-divider">
+
+    <div class="row featurette py-5">
+        <div class="col-md-7 order-md-2">
+            <h2 class="featurette-heading" id="create">Создание маршрута. <span
+                    class="text-muted">Заполните поля.</span>
+            </h2>
+            <p class="lead">Необходимо передать параметры грузового авто, а так же указать координаты города или
+                населенного пункта (долготы и широты)
+
+            <h6>Параметры:</h6>
+            <ul>
+                <li>Ширина</li>
+                <li>Длина</li>
+                <li>Высота</li>
+                <li>Фактическая масса</li>
+                <li>Разрешённая масса</li>
+                <li>Максимальная нагрузка на ось</li>
+            </ul>
+            </p>
+        </div>
+        <div class="col-md-5 order-md-1">
+            <img class="zoom" style="width: 500px; height=500px;border: 3px solid #00a8e1;"
+                 src="static/route/home_preview_route_truck.png">
+        </div>
+    </div>
+
 </div>
 
 
