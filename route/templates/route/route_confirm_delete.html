@@ -8,8 +8,9 @@
 
             <form method="post">
                 {% csrf_token %}
-                <H1>Вы хотите удалить привычку?</H1>
-                <H2>"Место:{{object.place}} Время:{{object.time}} Действие:{{object.action}}"</H2>
+                <H1>Вы хотите удалить маршрут?</H1>
+                <H4>ID:{{object.pk}}</H4>
+                <H2>Маршрут: "{{object.start_title}} → {{object.end_title}}"</H2>
                 <br>
                 <button class="btn btn-outline-danger">Удалить</button>
                 <a class="btn btn-outline-warning" href="{% url 'route:home' %}">Отмена</a>

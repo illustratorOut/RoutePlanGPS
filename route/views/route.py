@@ -1,4 +1,6 @@
-from json import dumps
+import os
+import folium
+import time
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
@@ -8,11 +10,9 @@ from django.views.generic import ListView, CreateView, UpdateView, DeleteView, D
 from route.forms import RouteForm
 from route.models import Route, GasStation
 from route.services import RouteMap
-from colorama import Fore
 
-import folium
-import time
 import requests
+from json import dumps
 
 
 class RouteDetailView(DetailView):
@@ -170,7 +170,12 @@ def render_map(request, pk):
                         weight=5,
                         opacity=0.8).add_to(m)
 
-        m.save(f"route/templates/map/map.html")
+        directory = r"route/templates/map"
+
+        if not os.path.exists(directory):
+            os.makedirs(directory)
+
+        m.save(r'route/templates/map/map.html')
         return render(request, 'map/map.html')
 
     return render(request, 'route/route_list.html')

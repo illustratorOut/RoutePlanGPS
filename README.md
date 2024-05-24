@@ -1,8 +1,10 @@
-| Описание                 | Команды                                                    |
-|--------------------------|------------------------------------------------------------|
-| ✔️ Приминить миграции    | ```python manage.py migrate```                             |
-| ✔️ Создать пользователей | ```python manage.py ccsu```                                |
-| ✔️ Запустить HTTPS       | ```python manage.py runserver_plus --cert-file cert.crt``` |
+| Описание                   | Команды                                                    |
+|----------------------------|------------------------------------------------------------|
+| ✔️ Приминить миграции      | ```python manage.py migrate```                             |
+| ✔️ Создать пользователей   | ```python manage.py ccsu```                                |
+| ✔️ Создать маршруты        | ```python manage.py route_data```                          |
+| ✔️ Загрузить в БД заправки | ```python manage.py load_csv```                            |
+| ✔️ Запустить HTTPS         | ```python manage.py runserver_plus --cert-file cert.crt``` |
 
 <br>
 

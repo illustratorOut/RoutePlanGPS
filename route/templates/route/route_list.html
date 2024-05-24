@@ -6,8 +6,54 @@
 
 <div class="container py-3">
 
+    <div class="container px-4 py-5" id="hanging-icons">
+        <h2 class="pb-2 border-bottom">Навигация</h2>
+        <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
 
-
+            <div class="col d-flex align-items-start">
+                <div class="icon-square bg-light text-dark flex-shrink-0 me-3">
+                    <img src="static/route/api.png">
+                </div>
+                <div>
+                    <h2>Документация API</h2>
+                    <p>API работает прямо в браузере, промежуточный ПО не требуется. Если хотите готовое решение для
+                        интеграцией с вашим сайтом, я
+                        написал небольшую RESTful API </p>
+                    <a href="swagger/" class="btn btn-primary">Документация</a>
+                </div>
+            </div>
+            <div class="col d-flex align-items-start">
+                <div class="icon-square bg-light text-dark flex-shrink-0 me-3">
+                    <svg class="bi" width="1em" height="1em">
+                        <use xlink:href="#cpu-fill"></use>
+                    </svg>
+                </div>
+                <div>
+                    <h2>Маршруты</h2>
+                    <p>Абзац текста под заголовком, поясняющий заголовок. Мы добавим к нему еще одно предложение и,
+                        вероятно, просто продолжим, пока у нас не закончатся слова.</p>
+                    <a href="#" class="btn btn-primary">
+                        Основная кнопка
+                    </a>
+                </div>
+            </div>
+            <div class="col d-flex align-items-start">
+                <div class="icon-square bg-light text-dark flex-shrink-0 me-3">
+                    <svg class="bi" width="1em" height="1em">
+                        <use xlink:href="#tools"></use>
+                    </svg>
+                </div>
+                <div>
+                    <h2>Избранный заголовок</h2>
+                    <p>Абзац текста под заголовком, поясняющий заголовок. Мы добавим к нему еще одно предложение и,
+                        вероятно, просто продолжим, пока у нас не закончатся слова.</p>
+                    <a href="#" class="btn btn-primary">
+                        Основная кнопка
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
     <p>
@@ -28,12 +74,12 @@
 
                     <thead class="m-0 p-0">
                     <tr class="text-center" style="background-color:#7ab3ef">
-                        <th scope="col">Место</th>
-                        <th scope="col">Время</th>
-                        <th scope="col">Действие</th>
-                        <th scope="col">Вознаграждение</th>
-                        <th scope="col">Связанная привычка</th>
-                        <th scope="col">Признак публичности</th>
+                        <th scope="col">Маршрут "Отправления"</th>
+                        <th scope="col"></th>
+                        <th scope="col">Маршрут "Прибытия"</th>
+                        <th scope="col">-</th>
+                        <th scope="col">-</th>
+                        <th scope="col">Кол-во АЗС</th>
                         <th scope="col"></th>
                     </tr>
                     </thead>
@@ -42,12 +88,12 @@
                     {% for object in object_list %}
                     {% if object.user == user %}
                     <tr class="text-center">
-                        <td class="text-center">{{object.place}}</td>
-                        <td>{{object.time}}</td>
-                        <td>{{object.action}}</td>
-                        <td>{{object.reward|default_if_none:"-"}}</td>
-                        <td>{{object.related_habit|default_if_none:"-"}}</td>
-                        <td>{{object.is_public}}</td>
+                        <td class="text-center">{{object.start_title|default_if_none:"-"}}</td>
+                        <td><strong>→</strong></td>
+                        <td>{{object.end_title|default_if_none:"-"}}</td>
+                        <td>{{object.r}}</td>
+                        <td>{{object.r}}</td>
+                        <td>{{object.i}}</td>
                         <td>
                             <div class="container">
 
