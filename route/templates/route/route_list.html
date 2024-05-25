@@ -5,6 +5,7 @@
 
 
 <div class="container py-3">
+    {% if user.is_authenticated %}
     <div class="row justify-content-center">
         <div class="col-4">
             <a class="btn btn-light col-12 text-center p-1" style="border: 2px solid black; background: #7ab3ef;"
@@ -70,6 +71,7 @@
         </div>
     </div>
     <br>
+    {% if endif %}
 
     <div class="container px-4 pb-5" id="hanging-icons">
         <h2 class="pb-2 border-bottom">Навигация</h2>

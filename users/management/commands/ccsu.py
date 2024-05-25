@@ -44,4 +44,4 @@ class Command(BaseCommand):
                 user.set_password(password)
                 user.save()
                 print(
-                    f'{Fore.GREEN}Пользователь создан!\n {Fore.RESET}login: {Fore.GREEN} {user.email}\n {Fore.RESET}password: {Fore.GREEN}{password}{Fore.RESET}\n')
+                    f'{Fore.GREEN}Пользователь создан!\n {Fore.RESET}login: {Fore.GREEN} {user.email}\n {Fore.RESET}password: {Fore.GREEN}{password}{Fore.RESET}')
