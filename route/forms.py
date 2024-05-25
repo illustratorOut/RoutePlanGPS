@@ -91,4 +91,10 @@ class RouteForm(StyleFormMixin, forms.ModelForm):
                     'placeholder': "Максимальная нагрузка на ось",
                     'step': '0.000001'
                 }),
+            'status_jams': forms.CheckboxInput(
+                attrs={
+                    'class': "form-check-input",
+                    'type': "checkbox"
+                }),
+
         }

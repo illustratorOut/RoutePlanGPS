@@ -20,6 +20,7 @@ class Route(models.Model):
     mass = models.FloatField(verbose_name='Фактическая масса')
     max_perm_mass = models.FloatField(verbose_name='Разрешённая масса')
     axle_load = models.FloatField(verbose_name='Максимальная нагрузка на ось')
+    status_jams = models.BooleanField(default=False, verbose_name='Учитывать пробки', **NULLABLE)
     last_update = models.DateTimeField(auto_now_add=True, verbose_name='Последнее обновление', **NULLABLE)
 
     class Meta:

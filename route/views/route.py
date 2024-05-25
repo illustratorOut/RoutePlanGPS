@@ -73,7 +73,7 @@ def render_map(request, pk):
 
             ],
             "vehicle_type": "truck",
-            "jams": False,
+            "jams": route.status_jams,
             "truck_limits": {
                 "total_weight_kg": route.mass,
                 "axle_weight_kg": route.axle_load,
