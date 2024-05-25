@@ -1,0 +1,20 @@
+{% extends 'route/base.html' %}
+
+
+{% block content%}
+
+<div class="container py-3 ">
+    <div class="alert alert-warning" role="alert">
+        <h3 class="alert-heading text-center">Предупреждение!</h3>
+        <p>
+            Просьба проверить валидность введеных данных данных. <br> Возможно допущена ошибка при вводе данных широты
+            или
+            долготы, так же рекомендуем проверить параметры габоритов транспорта.
+            <a href="{% url 'route:update' count  %}">Проверить данные </a>
+        </p>
+        <hr>
+        <h6>К сожелению у нас не получилось построить маршрут.</h6>
+    </div>
+</div>
+
+{% endblock %}

@@ -2,7 +2,6 @@ import os
 import requests
 
 from json import dumps
-
 from colorama import Fore
 from dotenv import load_dotenv
 
@@ -26,9 +25,12 @@ class RouteMap:
 
     def get_route_id(self, data: dict) -> str:
         '''Уникальный идентификатор маршрута'''
-        response = requests.post(url=self.url_route_id, data=dumps(data), headers=self.headers)
-        result = response.json()
-        return result.get('route_id')
+        try:
+            response = requests.post(url=self.url_route_id, data=dumps(data), headers=self.headers)
+            result = response.json()
+            return result.get('route_id')
+        except:
+            return False
 
     def get_route_metadata(self, route_id: str) -> dict:
         '''Метаданные маршрута'''

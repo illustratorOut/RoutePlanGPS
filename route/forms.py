@@ -54,41 +54,41 @@ class RouteForm(StyleFormMixin, forms.ModelForm):
                 attrs={
                     'min': 0,
                     'placeholder': "Длина",
-                    'step': '0.1'
+                    'step': '0.000001'
                 }),
 
             'width': forms.NumberInput(
                 attrs={
                     'min': 0,
                     'placeholder': "Ширина",
-                    'step': '0.1'
+                    'step': '0.000001'
                 }),
 
             'height': forms.NumberInput(
                 attrs={
                     'min': 0,
                     'placeholder': "Высота",
-                    'step': '0.1'
+                    'step': '0.000001'
                 }),
 
             'mass': forms.NumberInput(
                 attrs={
                     'min': 0,
                     'placeholder': "Фактическая масса",
-                    'step': '0.1'
+                    'step': '0.000001'
                 }),
 
             'max_perm_mass': forms.NumberInput(
                 attrs={
                     'min': 0,
                     'placeholder': "Разрешённая масса",
-                    'step': '0.1'
+                    'step': '0.000001'
                 }),
 
             'axle_load': forms.NumberInput(
                 attrs={
                     'min': 0,
                     'placeholder': "Максимальная нагрузка на ось",
-                    'step': '0.1'
+                    'step': '0.000001'
                 }),
         }
