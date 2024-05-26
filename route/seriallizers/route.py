@@ -10,10 +10,6 @@ class RouteSerializer(serializers.ModelSerializer):
         exclude = ('user', 'last_update')
 
 
-class RewardorRelatedHabitValidator:
-    pass
-
-
 class RouteCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Route

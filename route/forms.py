@@ -6,7 +6,7 @@ from users.forms import StyleFormMixin
 class RouteForm(StyleFormMixin, forms.ModelForm):
     class Meta:
         model = Route
-        exclude = ('user',)
+        exclude = ('user', 'start_title', 'end_title')
 
         labels = {
             'start_points_x': '',

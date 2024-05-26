@@ -31,26 +31,12 @@ v3.12, [PostgreSQL](https://www.postgresql.org/download/windows/) 15.7
 или [Docker Desktop](https://docs.docker.com/engine/install/)
 <hr>
 
-### DOCKER
+## Первое
 
-Для запуск через docker, необходимо собрать образ web-приложения, с помощью команды:
+Шаг 1. Подключить [Bootstrap](https://getbootstrap.com/docs/5.0/getting-started/download/)
 
-```commandline
-docker-compose up --build
-```
-
-После успешной сборки образа, перейдите по ссылке: [Стартовая страница](https://mysite.com:8000/)
-
-Готово! Можно использовать web-приложения
-<hr>
-
-### Установка зависимостей
-
-Для установки зависимостей, выполните команду:
-
-```pip install -r .\requirements.txt ```
-
-Создайте файл с названием ".env" и заполните пустые поля:
+## Второе
+Шаг 2. Создайте файл с названием ".env" и заполните пустые поля:
 
 <H3 style="text-align: center; color:#A7FC00;">Шаблон для файла .env </H3>
 <div style="display: flex; justify-content: center;">
@@ -70,6 +56,26 @@ API_KEY_WEATHER=
 ```
 
 </div>
+
+### DOCKER
+Небходимо выполнить: [Шаг 1](#первое) и [Шаг 2](#второе) далее ...
+
+Для запуск docker, необходимо собрать образ web-приложения, с помощью команды:
+
+```commandline
+docker-compose up --build
+```
+
+После успешной сборки образа, перейдите по ссылке: [Стартовая страница](https://mysite.com:8000/)
+
+Готово! Можно использовать web-приложение!
+<hr>
+
+### Установка зависимостей
+
+Для установки зависимостей, выполните команду:
+
+```pip install -r .\requirements.txt ```
 
 Выполните команды из примера ниже:
 <br>
