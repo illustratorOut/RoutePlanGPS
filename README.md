@@ -93,12 +93,15 @@ docker-compose up --build
 ## Использование
 
 <H6>Презинтация проекта </H6>
+
 ![info main](static/info/main_info.gif)
 
 <H6>Профиль </H6>
+
 ![profile info](static/info/profile_info.gif)
 
 <H6>Визуализация карты </H6>
+
 ![render map](static/info/render_map.gif)
 
 ## FAQ
