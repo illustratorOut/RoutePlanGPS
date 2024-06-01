@@ -59,8 +59,6 @@ class RouteForm(StyleFormMixin, forms.ModelForm):
 
             'width': forms.NumberInput(
                 attrs={
-                    'type' : "text",
-                    'class': "form-control",
                     'min': 0,
                     'placeholder': "Ширина, метры",
                     'step': '0.000001'

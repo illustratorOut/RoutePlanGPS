@@ -5,9 +5,9 @@
 ## Содержание
 
 - [Технологии](#технологии)
+- [Примеры использования](#использование)
 - [Быстрый старт](#docker)
 - [Начало работы](#разработка)
-- [Примеры использования](#использование)
 
 ## Технологии
 
@@ -36,6 +36,7 @@ v3.12, [PostgreSQL](https://www.postgresql.org/download/windows/) 15.7
 Шаг 1. Подключить [Bootstrap](https://getbootstrap.com/docs/5.0/getting-started/download/)
 
 ## Второе
+
 Шаг 2. Создайте файл с названием ".env" и заполните пустые поля:
 
 <H3 style="text-align: center; color:#A7FC00;">Шаблон для файла .env </H3>
@@ -58,6 +59,7 @@ API_KEY_WEATHER=
 </div>
 
 ### DOCKER
+
 Небходимо выполнить: [Шаг 1](#первое) и [Шаг 2](#второе) далее ...
 
 Для запуск docker, необходимо собрать образ web-приложения, с помощью команды:
@@ -90,4 +92,17 @@ docker-compose up --build
 
 ## Использование
 
+<H6>Презинтация проекта </H6>
+![info main](static/info/main_info.gif)
+
+<H6>Профиль </H6>
+![profile info](static/info/profile_info.gif)
+
+<H6>Визуализация карты </H6>
+![render map](static/info/render_map.gif)
+
 ## FAQ
+
+<a href="https://t.me/Illustrator_v">
+    <img src="static/info/telegram_logo.png" alt="Telegram Icon" style="width:5%">
+</a>
